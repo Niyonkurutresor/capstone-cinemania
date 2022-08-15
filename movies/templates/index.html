@@ -1,0 +1,121 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">Filmlane</p>
+
+            <h1 class="h1 hero-title">
+              flex-box <strong>Movie</strong> uburyohe mububundi
+            </h1>
+          </div>
+            
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #UPCOMING
+      -->
+
+      <section class="upcoming">
+        <div class="container">
+
+          <div class="flex-wrapper">
+
+            <div class="title-wrapper">
+              <p class="section-subtitle">Online Streaming</p>
+
+              <h2 class="h2 section-title">Upcoming Movies</h2>
+            </div>
+          </div>
+
+          <ul class="movies-list  has-scrollbar">
+
+            {% for movie in movies %}
+              <li>
+              <div class="movie-card">
+
+                <a href="{% url 'movie-detail' movie.id %}">
+                  <figure class="card-banner">
+                    <img src="{{ movie.movies_image.url }}" alt="{{ movie.title }}" style="width:500px; height: 700px; object-fit: cover;">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="{% url 'movie-detail' movie.id %}">
+                    <h3 class="card-title">{{ movie.title }}</h3>
+                  </a>
+
+                  <time datetime="2022">{{ movie.released_date }}</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT137M">{{ movie.length_time }}</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.5</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+            {% endfor %}
+
+          </ul>
+
+
+        </div>
+        {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+      </section>
+
+
+
+
+  </main>
+
+
+{% endblock %}
+
