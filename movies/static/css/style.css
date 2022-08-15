@@ -532,7 +532,7 @@ body.active { overflow: hidden; }
 \*-----------------------------------*/
 
 .upcoming {
-  /*background: url("../images/upcoming-bg.png") no-repeat;*/
+ 
   background-size: cover;
   background-position: center;
   padding-block: var(--section-padding);
