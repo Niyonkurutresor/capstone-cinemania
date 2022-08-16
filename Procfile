@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn Cinemania.wsgi --log-file -
+web: gunicorn django_demo.wsgi --log-file -
