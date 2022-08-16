@@ -5,6 +5,8 @@ Group name: flex-box
 Member one: NIYONKURU Tresor
 Member two: MBONIMPA Egide 
 
+#### Heroku link: https://cinemania-capstone.herokuapp.com/
+#### Superuser usename: admin password: admin
 ## Case Study
 
 Cinemania is a community of Cinema enthusiasts. This community needs a web application that would allow to manage different members. Your task is a to develop this application using Django framework.
